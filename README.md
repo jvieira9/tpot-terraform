@@ -64,8 +64,7 @@ Please note that, even after the instance is created, you should wait at least 1
 
 Once T-Pot is up and running, you can access its web interface through your browser:
 
-**URL:**  
-`https://<your-ec2-ip>:64297`
+**URL:** `https://<your-ec2-ip>:64297`
 
 #### Login Credentials:
 
