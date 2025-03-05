@@ -48,13 +48,13 @@ resource "aws_instance" "tpot_terraform" {
   security_groups = [aws_security_group.tpot_sg.name]
 
   root_block_device {
-    volume_size = 64  # 64 GB of storage
+    volume_size = 64
     volume_type = "gp2"
     delete_on_termination = true
   }
 
   tags = {
-    Name = "Terraform T-Pot"  # Instance name as a tag
+    Name = "Terraform T-Pot"
   }
   user_data = <<-EOF
       #!/bin/bash
