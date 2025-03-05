@@ -54,7 +54,7 @@ The allowed_ip variable controls the IP address allowed to access the EC2 instan
 terraform apply -var="allowed_ip=192.168.0.2/32" -auto-approve
 ```
 
-This command overrides the default allowed_ip value with 192.168.0.2/32.
+This command overrides the default allowed_ip value with 192.168.0.3/32.
 
 After the infrastructure is created, Terraform will output the public IP of the provisioned EC2 instance:
 
