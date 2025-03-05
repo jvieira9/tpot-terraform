@@ -27,14 +27,26 @@ The output of the provisioning includes the EC2 instance's public IP.
 
 ## Usage
 
-### 1. Initialize Terraform
+### 1. Clone this repository
 
-Start by initializing Terraform to download the necessary provider plugins:
+Start by cloning this repository.
+
+```bash
+git clone https://github.com/jvieira9/tpot-terraform.git
+```
+
+```bash
+cd tpot-terraform
+```
+
+### 2. Initialize Terraform
+
+Initialize Terraform to download the necessary provider plugins:
 
 ```bash
 terraform init
 ```
-### 2. Apply Terraform Configuration
+### 3. Apply Terraform Configuration
 
 The allowed_ip variable controls the IP address allowed to access the EC2 instance via the security group. You can set the default IP address in the main.tf file or specify a different IP address by passing the allowed_ip variable during the apply step.
 
