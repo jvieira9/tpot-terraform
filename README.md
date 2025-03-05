@@ -60,7 +60,20 @@ After the infrastructure is created, Terraform will output the public IP of the 
 
 Please note that, even after the instance is created, you should wait at least 15 for the instance to install and configure the honeypot.
 
-### 3. Destroy the Infrastructure
+### 4. Login
+
+Once T-Pot is up and running, you can access its web interface through your browser:
+
+**URL:**  
+`https://<your-ec2-ip>:64297`
+
+#### Login Credentials:
+
+- **Username:** `jvieira`
+- **Password:** `Passw0rd`
+
+
+### 5. Destroy the Infrastructure
 If you no longer need the resources, you can destroy them using the following command:
 
 ```bash
