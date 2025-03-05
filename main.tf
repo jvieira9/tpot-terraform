@@ -58,11 +58,14 @@ resource "aws_instance" "tpot_terraform" {
   }
   user_data = <<-EOF
       #!/bin/bash
-      apt update && apt upgrade -y && apt install -y git
-      git clone https://github.com/telekom-security/tpotce /home/ubuntu && cd tpotce
+      apt update && apt upgrade -y
+      apt install -y git
+      git clone https://github.com/telekom-security/tpotce /home/ubuntu
+      cd tpotce
       chown -R ubuntu:ubuntu /home/ubuntu/tpotce
       sudo -u ubuntu bash -c "echo -e 'y\nh\njvieira\ny\nPassw0rd\nPassw0rd\ny' | ./install.sh >> /home/ubuntu/tpotce/tf_tpot.log 2>&1"
-      sleep 60 && reboot now
+      sleep 60
+      reboot now
       EOF
 }
 
