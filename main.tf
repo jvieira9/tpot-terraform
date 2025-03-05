@@ -5,7 +5,7 @@ provider "aws" {
 variable "allowed_ip" {
   description = "IP address allowed to access the security group"
   type        = string
-  default     = "8.8.8.8/32"  # You can change this default IP as needed
+  default     = "192.168.0.2/32"  # You can change this default IP as needed
 }
 
 resource "aws_security_group" "tpot_sg" {
