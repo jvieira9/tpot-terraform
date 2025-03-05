@@ -2,6 +2,12 @@ provider "aws" {
   region = "us-east-1"
 }
 
+variable "allowed_ip" {
+  description = "IP address allowed to access the security group"
+  type        = string
+  default     = "8.8.8.8/32"  # You can change this default IP as needed
+}
+
 resource "aws_security_group" "tpot_sg" {
   name        = "tpot_terraform_sg"
   description = "Security group for T-Pot EC2 instance"
@@ -10,7 +16,7 @@ resource "aws_security_group" "tpot_sg" {
     from_port   = 0
     to_port     = 65535
     protocol    = "tcp"
-    cidr_blocks = ["85.241.222.129/32"]
+    cidr_blocks = [var.allowed_ip]
   }
 
   ingress {
@@ -55,7 +61,7 @@ resource "aws_instance" "tpot_terraform" {
       apt update && apt upgrade -y && apt install -y git
       git clone https://github.com/telekom-security/tpotce /home/ubuntu && cd tpotce
       chown -R ubuntu:ubuntu /home/ubuntu/tpotce
-      sudo -u ubuntu bash -c "echo -e 'y\nh\njvieira\ny\nPassw0rd\nPassw0rd\ny' | ./install.sh >> /home/ubuntu/tpotce/jvlogs.log 2>&1"
+      sudo -u ubuntu bash -c "echo -e 'y\nh\njvieira\ny\nPassw0rd\nPassw0rd\ny' | ./install.sh >> /home/ubuntu/tpotce/tf_tpot.log 2>&1"
       sleep 60 && reboot now
       EOF
 }
