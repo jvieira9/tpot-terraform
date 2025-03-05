@@ -34,14 +34,9 @@ Start by initializing Terraform to download the necessary provider plugins:
 ```bash
 terraform init
 ```
-### 2. Configure the allowed_ip Variable
+### 2. Apply Terraform Configuration
 
-The allowed_ip variable controls the IP address allowed to access the EC2 instance via the security group. You can set the default IP address in the main.tf file.
-
-### 3. Apply Terraform Configuration
-You can either use the default IP or specify a different IP address by passing the allowed_ip variable during the apply step.
-
-If you want to change the allowed IP address for accessing the EC2 instance, use the -var flag to specify a different IP:
+The allowed_ip variable controls the IP address allowed to access the EC2 instance via the security group. You can set the default IP address in the main.tf file or specify a different IP address by passing the allowed_ip variable during the apply step.
 
 ```bash
 terraform apply -var="allowed_ip=192.168.0.2/32"
@@ -49,10 +44,11 @@ terraform apply -var="allowed_ip=192.168.0.2/32"
 
 This command overrides the default allowed_ip value with 192.168.0.2/32.
 
-### 4. Output the Public IP
 After the infrastructure is created, Terraform will output the public IP of the provisioned EC2 instance:
 
-### 5. Destroy the Infrastructure
+Please note that, even after the instance is created, you should wait at least 15 for the instance to install and configure the honeypot.
+
+### 3. Destroy the Infrastructure
 If you no longer need the resources, you can destroy them using the following command:
 
 ```bash
