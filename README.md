@@ -1,48 +1,35 @@
-# Terraform T-Pot EC2 Instance
+# Terraform Configuration for T-Pot EC2 Instance on AWS
 
-This repository contains a Terraform configuration to set up an AWS EC2 instance running the T-Pot honeypot system. The script automatically provisions an EC2 instance, configures the necessary security groups, and installs T-Pot using a custom user-data script.
+This repository contains a Terraform configuration to provision an EC2 instance with a security group allowing specific IP addresses. It also installs the [T-Pot](https://github.com/telekom-security/tpotce) honeypot software on the instance using `user_data`.
 
-## Requirements
+## Prerequisites
 
-- [Terraform](https://www.terraform.io/downloads.html) >= 1.0
-- [AWS CLI](https://aws.amazon.com/cli/) with proper IAM permissions
-- An existing AWS key pair (`vockey`) to access the instance
+- Terraform 0.12 or higher
+- AWS account with appropriate credentials set up in the environment (via AWS CLI or environment variables)
+- Key pair named `vockey` already created in the AWS region `us-east-1`
 
-## Project Structure
+## Configuration Overview
 
-- `main.tf`: Terraform configuration to create resources on AWS
-- `tpotce`: GitHub repository for T-Pot honeypot system (automatically cloned during EC2 instance setup)
+This Terraform configuration does the following:
 
-## Configuration
+- Defines a variable `allowed_ip` to set the allowed IP address for accessing the EC2 instance.
+- Creates a security group (`aws_security_group.tpot_sg`) that:
+  - Allows TCP traffic from the `allowed_ip` on all ports (0-65535).
+  - Allows unrestricted inbound TCP and UDP traffic on ports 1 to 64000.
+  - Allows all outbound traffic.
+- Provisions an EC2 instance (`aws_instance.tpot_terraform`) with:
+  - The specified AMI (`ami-04b4f1a9cf54c11d0`).
+  - Instance type `r5.large`.
+  - `64GB` root block storage.
+  - A `user_data` script to install T-Pot and set up the environment.
 
-### `main.tf`
+The output of the provisioning includes the EC2 instance's public IP.
 
-The configuration includes the following resources:
-
-1. **AWS Security Group**: 
-   - Allows inbound traffic on specific ports (TCP & UDP) from the internet and a specific IP address.
-   - Outbound traffic is allowed to all destinations.
-
-2. **AWS EC2 Instance**:
-   - Instance type: `r5.large`
-   - AMI: `ami-04b4f1a9cf54c11d0` (Ubuntu-based image)
-   - Security group: Uses the defined `tpot_terraform_sg`
-   - Storage: 64GB (`gp2`) root volume, deleted upon termination
-   - Key pair: `vockey`
-
-3. **User Data Script**:
-   - Updates and upgrades the system
-   - Installs Git
-   - Clones the T-Pot repository
-   - Configures the necessary permissions and runs the T-Pot installation script
-   - Logs the output to `/home/ubuntu/tpotce/tf_tpot.log`
-   - Reboots the system after installation
-
-## How to Use
+## Usage
 
 ### 1. Initialize Terraform
 
-Before applying the configuration, initialize Terraform:
+Start by initializing Terraform to download the necessary provider plugins:
 
 ```bash
 terraform init
