@@ -1,12 +1,12 @@
 # Terraform Configuration for T-Pot EC2 Instance on AWS
 
-This repository contains a Terraform configuration to provision an EC2 instance with a security group allowing specific IP addresses. It also installs the [T-Pot](https://github.com/telekom-security/tpotce) honeypot software on the instance using `user_data`.
+This repository contains a Terraform configuration to create an EC2 instance with the [T-Pot](https://github.com/telekom-security/tpotce) honeypot software, configured using `user_data`.
 
 ## Prerequisites
 
-- Terraform 0.12 or higher
-- AWS account with appropriate credentials set up in the environment (via AWS CLI or environment variables)
-- Key pair named `vockey` already created in the AWS region `us-east-1`
+- Terraform;
+- AWS account;
+- Key pair named `vockey` already created in the AWS region `us-east-1`.
 
 ## Configuration Overview
 
