@@ -14,13 +14,13 @@ This Terraform configuration does the following:
 
 - Defines a variable `allowed_ip` to set the allowed IP address for accessing the EC2 instance.
 - Creates a security group (`aws_security_group.tpot_sg`) that:
-  - Allows TCP traffic from the `allowed_ip` on all ports (0-65535).
-  - Allows unrestricted inbound TCP and UDP traffic on ports 1 to 64000.
+  - Allows TCP traffic from the `allowed_ip` on all ports (0-65535);
+  - Allows unrestricted inbound TCP and UDP traffic on ports 1 to 64000;
   - Allows all outbound traffic.
 - Provisions an EC2 instance (`aws_instance.tpot_terraform`) with:
-  - The specified AMI (`ami-04b4f1a9cf54c11d0`).
-  - Instance type `r5.large`.
-  - `64GB` root block storage.
+  - The specified AMI (`ami-04b4f1a9cf54c11d0`);
+  - Instance type `r5.large`;
+  - `64GB` root block storage;
   - A `user_data` script to install T-Pot and set up the environment.
 
 The output of the provisioning includes the EC2 instance's public IP.
@@ -49,10 +49,10 @@ terraform apply -var="allowed_ip=192.168.0.2/32"
 
 This command overrides the default allowed_ip value with 192.168.0.2/32.
 
-4. Output the Public IP
+### 4. Output the Public IP
 After the infrastructure is created, Terraform will output the public IP of the provisioned EC2 instance:
 
-5. Destroy the Infrastructure
+### 5. Destroy the Infrastructure
 If you no longer need the resources, you can destroy them using the following command:
 
 ```bash
