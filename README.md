@@ -51,7 +51,7 @@ terraform init
 The allowed_ip variable controls the IP address allowed to access the EC2 instance via the security group. You can set the default IP address in the main.tf file or specify a different IP address by passing the allowed_ip variable during the apply step.
 
 ```bash
-terraform apply -var="allowed_ip=192.168.0.2/32" -auto-approve
+terraform apply -var="allowed_ip=192.0.2.3/32" -auto-approve
 ```
 
 This command overrides the default allowed_ip value with 192.0.2.3/32.
